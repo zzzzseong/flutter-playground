@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_playground/webtoon/screens/home_screen.dart';
 
 void main() {
   runApp(const App());
@@ -11,9 +12,9 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        colorScheme: const ColorScheme.light(
-          surface: Color(0xFFE7626C),
-        ),
+        // colorScheme: const ColorScheme.light(
+        //   surface: Color(0xFFE7626C),
+        // ),
         textTheme: const TextTheme(
           displayLarge: TextStyle(
               color: Color(0xFF232B55)
@@ -21,7 +22,7 @@ class App extends StatelessWidget {
         ),
         cardColor: const Color(0xFFF4EDDB)
       ),
-      home: Container(),
+      home: HomeScreen(),
     );
   }
 }

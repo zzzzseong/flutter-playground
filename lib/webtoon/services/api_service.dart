@@ -5,10 +5,10 @@ import 'package:http/http.dart' as http;
 
 class ApiService {
 
-  final String baseUrl = "https://webtoon-crawler.nomadcoders.workers.dev";
-  final String today = "today";
+  static const String baseUrl = "https://webtoon-crawler.nomadcoders.workers.dev";
+  static const String today = "today";
 
-  Future<List<CartoonModel>> getTodayCartoons() async {
+  static Future<List<CartoonModel>> getTodayCartoons() async {
     final response = await http.get(Uri.parse('$baseUrl/$today'));
 
     List<CartoonModel> cartoonList = [];

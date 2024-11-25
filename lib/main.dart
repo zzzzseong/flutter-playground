@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_playground/screens/home_screen.dart';
 
 void main() {
   runApp(const App());
@@ -12,9 +11,6 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        // colorScheme: ColorScheme.fromSwatch(
-          // backgroundColor: const Color(0xFFE7626C),
-        // ),
         colorScheme: const ColorScheme.light(
           surface: Color(0xFFE7626C),
         ),
@@ -25,7 +21,7 @@ class App extends StatelessWidget {
         ),
         cardColor: const Color(0xFFF4EDDB)
       ),
-      home: const HomeScreen(),
+      home: Container(),
     );
   }
 }

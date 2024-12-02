@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_playground/cartoon/models/cartoon_episode_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/cartoon_detail_model.dart';
 import '../services/api_service.dart';
@@ -24,12 +25,45 @@ class _DetailScreenState extends State<DetailScreen> {
 
   late Future<CartoonDetailModel> cartoon;
   late Future<List<CartoonEpisodeModel>> episodeList;
+  late SharedPreferences prefs;
+  bool isLiked = false;
+
+  /* SharedPreferences - 내부 저장소 초기화 */
+  Future initPrefs() async {
+    prefs = await SharedPreferences.getInstance();
+    final likedToons = prefs.getStringList('likedToons');
+    if(likedToons != null) {
+      if(likedToons.contains(widget.id) == true) {
+        setState(() {
+          isLiked = true;
+        });
+      }
+    } else {
+      await prefs.setStringList('likedToons', []);
+    }
+  }
 
   @override
   void initState() {
     super.initState();
     cartoon = ApiService.getCartoonById(widget.id);
     episodeList = ApiService.getLastEpisodeById(widget.id);
+    initPrefs();
+  }
+
+  onHeartTap() async {
+    final likedToons = prefs.getStringList('likedToons');
+    if(likedToons != null) {
+      if(isLiked) {
+        likedToons.remove(widget.id);
+      } else {
+        likedToons.add(widget.id);
+      }
+      await prefs.setStringList('likedToons', likedToons);
+      setState(() {
+        isLiked = !isLiked;
+      });
+    }
   }
 
   @override
@@ -44,8 +78,8 @@ class _DetailScreenState extends State<DetailScreen> {
         foregroundColor: Colors.green,
         actions: [
           IconButton(
-              onPressed: (){},
-              icon: const Icon(Icons.favorite_outline_outlined),
+              onPressed: onHeartTap,
+              icon: Icon(isLiked ? Icons.favorite: Icons.favorite_outline),
           )
         ],
         title: Text(

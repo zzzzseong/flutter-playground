@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_playground/webtoon/models/cartoon_model.dart';
-import 'package:flutter_playground/webtoon/widgets/cartoon_widget.dart';
+import 'package:flutter_playground/cartoon/models/cartoon_model.dart';
+import 'package:flutter_playground/cartoon/widgets/cartoon_widget.dart';
 
 import '../services/api_service.dart';
 

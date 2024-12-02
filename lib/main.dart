@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_playground/webtoon/screens/home_screen.dart';
+import 'package:flutter_playground/cartoon/screens/home_screen.dart';
 
 void main() {
   runApp(const App());
